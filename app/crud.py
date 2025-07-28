@@ -4,7 +4,7 @@ from app import models, schemas
 def listar_productos(db: Session):
     return db.query(models.Producto).all()
 
-def crear_pedido(db: Session, pedido: schemas.PedidoCrear):
+def crear_pedido(db: Session, pedido: schemas.PedidoCreate):
     total = 0
     for item in pedido.productos:
         producto = db.query(models.Producto).get(item.producto_id)

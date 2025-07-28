@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Resumen del pedido</h2>
+
+<div id="resumen-carrito">
+  <!-- Aquí se inyectará el contenido -->
+</div>
+
+<form id="checkout-form">
+  <label for="cliente">Nombre del cliente:</label>
+  <input type="text" id="cliente" name="cliente" required>
+
+  <button type="submit">Finalizar pedido</button>
+</form>
+{% endblock %}
