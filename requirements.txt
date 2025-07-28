@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
 sqlalchemy
+pg8000
+cloud-sql-python-connector[pg8000]
 psycopg2-binary
 python-dotenv
-cloud-sql-python-connector[pg8000]
-pg8000
