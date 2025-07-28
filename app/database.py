@@ -13,7 +13,7 @@ DB_NAME = os.getenv("DB_NAME")
 INSTANCE_CONNECTION_NAME = os.getenv("INSTANCE_CONNECTION_NAME")
 
 # Crea el conector
-connector = Connector(ip_type=IPTypes.PRIVATE)
+connector = Connector(ip_type=IPTypes.PUBLIC)
 
 def getconn():
     try:
