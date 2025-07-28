@@ -15,4 +15,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 
 # Comando para ejecutar la app con logs detallados
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--log-level", "debug"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--log-level", "debug", "--reload"]
+

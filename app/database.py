@@ -16,13 +16,18 @@ INSTANCE_CONNECTION_NAME = os.getenv("INSTANCE_CONNECTION_NAME")
 connector = Connector(ip_type=IPTypes.PRIVATE)
 
 def getconn():
-    return connector.connect(
-        INSTANCE_CONNECTION_NAME,
-        "pg8000",
-        user=DB_USER,
-        password=DB_PASS,
-        db=DB_NAME,
-    )
+    try:
+        return connector.connect(
+            INSTANCE_CONNECTION_NAME,
+            "pg8000",
+            user=DB_USER,
+            password=DB_PASS,
+            db=DB_NAME,
+        )
+    except Exception as e:
+        import sys
+        print("ERROR al conectar a Cloud SQL:", e, file=sys.stderr)
+        raise
 
 engine = create_engine("postgresql+pg8000://", creator=getconn)
 SessionLocal = sessionmaker(bind=engine)
