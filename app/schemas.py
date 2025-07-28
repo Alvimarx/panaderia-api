@@ -1,26 +1,22 @@
-from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
+from pydantic import BaseModel, validator
 
-class Producto(BaseModel):
-    id: int
-    nombre: str
-    precio: float
-    descripcion: Optional[str] = None
-
-    model_config = {"from_attributes": True}
-
-class ProductoPedido(BaseModel):
+class PedidoLineaIn(BaseModel):
     producto_id: int
-    cantidad: int
+    cantidad:   int
 
-class PedidoCrear(BaseModel):
-    cliente: str
-    productos: List[ProductoPedido]
+    @validator("cantidad")
+    def cantidad_positiva(cls, v):
+        assert v > 0, "La cantidad debe ser mayor a cero"
+        return v
 
-class PedidoDetalle(BaseModel):
-    id: int
-    cliente: str
+class PedidoCreate(BaseModel):
+    cliente:   str
+    productos: List[PedidoLineaIn]
+
+class PedidoOut(BaseModel):
+    id:    int
     total: float
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Pydantic v2

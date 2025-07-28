@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Productos disponibles</h2>
+<ul id="productos">
+  {% for p in productos %}
+    <li>
+      <strong>{{ p.nombre }}</strong> - ${{ p.precio }}
+      <button onclick="addToCart({{ p.id }}, '{{ p.nombre }}', {{ p.precio }})">Agregar</button>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
